@@ -1,8 +1,14 @@
 import os
 import csv
 
+# get the real path of the current file
+code_file_path = os.path.realpath(__file__)  
+subfolder = 'Resources'
+file_name = 'budget_data.csv'
+file_path = os.path.join(os.path.dirname(code_file_path), subfolder, file_name)
+
 # get data from Resources folder
-pyBank_csv = os.path.join('..', 'jduck', 'python-challenge', 'PyBank', 'Resources', 'budget_data.csv' )
+pyBank_csv = file_path
 
 # open the file in read mode
 file = open(pyBank_csv)
@@ -60,8 +66,7 @@ print("Greatest Decrease in Profits: ", dateMaxDecrease, "(", maxDecrease, ")")
 results = ["Financial Analysis", "\n", "----------------------------", "\n", "Total Months: ", str(total_months), "\n", "Total: ", str(total_profit_losses), "\n", "Average Change: ", str(avgChange), "\n", "Greatest Increase in Profits: ", str(dateMaxIncrease), "(", str(maxIncrease), ")", "\n", "Greatest Decrease in Profits: ", str(dateMaxDecrease), "(", str(maxDecrease), ")"]
 
 # create and export the text file with the results
-save_path = os.path.join('..', 'jduck', 'python-challenge', 'PyBank', 'analysis', 'results.txt')
-
+save_path = os.path.join(os.path.dirname(code_file_path), 'analysis', 'results.txt')
 
 with open(save_path, 'w') as f:
     f.writelines(' '.join(results))
